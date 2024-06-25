@@ -1,7 +1,16 @@
-const heading = "Hello world!";
-const root = document.getElementById("root");
-root.append(heading);
+import React from "react";
+import ReactDOM from "react-dom/client";
+import Heading from "./components/Header";
 
-const reactHeading = React.createElement("h1", {}, "Hello world from react!");
 const appRoot = ReactDOM.createRoot(root);
-appRoot.render(reactHeading);
+
+export function App() {
+    return (
+        <> 
+            <Heading name = { "component props" } />
+        </>
+    )
+    
+}
+
+appRoot.render(<App />);
