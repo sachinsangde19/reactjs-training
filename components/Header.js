@@ -1,7 +1,16 @@
 import React from "react";
+import Navbar from "./Navbar";
+import Banner from "./Banner";
+import ProductList from "./ProductList";
 
-const Heading = ( props ) => {
-    return <h1>{ props.name }</h1>;
+const Main = () => {
+    return (
+        <>
+            <Navbar />
+            <Banner />
+            <ProductList />
+        </>
+    )
 }
 
-export default Heading;
+export default Main;

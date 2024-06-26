@@ -1,13 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Heading from "./components/Header";
+import Main from "./components/Header";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.min.js';
+import './assets/style.css';
 
 const appRoot = ReactDOM.createRoot(root);
 
 export function App() {
     return (
         <> 
-            <Heading name = { "component props" } />
+            <Main name = { "component props" } />
         </>
     )
     
