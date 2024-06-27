@@ -27762,34 +27762,65 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _product = require("./Product");
 var _productDefault = parcelHelpers.interopDefault(_product);
+var _s = $RefreshSig$();
 const ProductList = ()=>{
+    _s();
+    //     const productData = [
+    //         {
+    //             id:1,
+    //             name: 'iPhone',
+    //             description: "A description for iphone.",
+    //             category: 'mobile phones',
+    //         },
+    //         {
+    //             id:2,
+    //             name: 'Samsung',
+    //             description: "A description for Samsung.",
+    //             category: 'mobile phones',
+    //         },
+    //         {
+    //             id:3,
+    //             name: 'iPad',
+    //             description: "A description for ipad.",
+    //             category: 'tablets',
+    //         },
+    // ]
+    const [products, setProducts] = (0, _react.useState)([]);
+    console.log(products);
+    (0, _react.useEffect)(()=>{
+        // console.log('Use effect called!');
+        fetchProducts();
+    }, []);
+    const fetchProducts = async ()=>{
+        const products = await fetch("https://dummyjson.com/products");
+        const productsJson = await products.json();
+        setProducts(productsJson.products);
+    // console.log(productsJson);
+    };
+    // console.log("Component rendered !");
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "container text-center product-wrapper",
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
             className: "row",
-            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                className: "col",
-                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _productDefault.default), {}, void 0, false, {
+            children: products.map((product)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _productDefault.default), {
+                    product: product
+                }, product.id, false, {
                     fileName: "components/ProductList.js",
-                    lineNumber: 9,
-                    columnNumber: 17
-                }, undefined)
-            }, void 0, false, {
-                fileName: "components/ProductList.js",
-                lineNumber: 8,
-                columnNumber: 13
-            }, undefined)
+                    lineNumber: 49,
+                    columnNumber: 42
+                }, undefined))
         }, void 0, false, {
             fileName: "components/ProductList.js",
-            lineNumber: 7,
+            lineNumber: 48,
             columnNumber: 9
         }, undefined)
     }, void 0, false, {
         fileName: "components/ProductList.js",
-        lineNumber: 6,
+        lineNumber: 47,
         columnNumber: 5
     }, undefined);
 };
+_s(ProductList, "Of75wLl7oFZkZ1AGF2Dj3fIBhOY=");
 _c = ProductList;
 exports.default = ProductList;
 var _c;
@@ -27812,58 +27843,80 @@ parcelHelpers.defineInteropFlag(exports);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
-const Product = ()=>{
+const Product = (props)=>{
+    // console.log(props);
+    const { title, thumbnail, description, category } = props.product;
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        className: "card",
-        children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
-                src: "https://placehold.co/200x150",
-                className: "card-img-top",
-                alt: "..."
-            }, void 0, false, {
-                fileName: "components/Product.js",
-                lineNumber: 6,
-                columnNumber: 9
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                className: "card-body",
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h5", {
-                        className: "card-title",
-                        children: "Card title"
-                    }, void 0, false, {
-                        fileName: "components/Product.js",
-                        lineNumber: 8,
-                        columnNumber: 13
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                        className: "card-text",
-                        children: "Some quick example text to build on the card title and make up the bulk of the card's content."
-                    }, void 0, false, {
-                        fileName: "components/Product.js",
-                        lineNumber: 9,
-                        columnNumber: 13
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
-                        href: "#",
-                        className: "btn btn-primary",
-                        children: "Go somewhere"
-                    }, void 0, false, {
-                        fileName: "components/Product.js",
-                        lineNumber: 10,
-                        columnNumber: 13
-                    }, undefined)
-                ]
-            }, void 0, true, {
-                fileName: "components/Product.js",
-                lineNumber: 7,
-                columnNumber: 9
-            }, undefined)
-        ]
-    }, void 0, true, {
+        className: "col",
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+            className: "card",
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                    src: thumbnail,
+                    className: "card-img-top",
+                    alt: "..."
+                }, void 0, false, {
+                    fileName: "components/Product.js",
+                    lineNumber: 9,
+                    columnNumber: 17
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    className: "card-body",
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h5", {
+                            className: "card-title",
+                            children: title
+                        }, void 0, false, {
+                            fileName: "components/Product.js",
+                            lineNumber: 11,
+                            columnNumber: 21
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                            className: "card-text",
+                            children: description
+                        }, void 0, false, {
+                            fileName: "components/Product.js",
+                            lineNumber: 12,
+                            columnNumber: 21
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            className: "badge text-bg-success custom-badge",
+                            children: category
+                        }, void 0, false, {
+                            fileName: "components/Product.js",
+                            lineNumber: 13,
+                            columnNumber: 21
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                            fileName: "components/Product.js",
+                            lineNumber: 13,
+                            columnNumber: 93
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
+                            href: "#",
+                            className: "btn btn-primary",
+                            children: "Add to cart"
+                        }, void 0, false, {
+                            fileName: "components/Product.js",
+                            lineNumber: 14,
+                            columnNumber: 21
+                        }, undefined)
+                    ]
+                }, void 0, true, {
+                    fileName: "components/Product.js",
+                    lineNumber: 10,
+                    columnNumber: 17
+                }, undefined)
+            ]
+        }, void 0, true, {
+            fileName: "components/Product.js",
+            lineNumber: 8,
+            columnNumber: 13
+        }, undefined)
+    }, void 0, false, {
         fileName: "components/Product.js",
-        lineNumber: 5,
-        columnNumber: 5
+        lineNumber: 7,
+        columnNumber: 9
     }, undefined);
 };
 _c = Product;
