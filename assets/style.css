@@ -8,5 +8,9 @@
 
 .custom-badge {
     margin: 15px;
-
+}
+ 
+.category {
+    width: unset;
+    margin: 5px;
 }

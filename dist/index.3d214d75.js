@@ -27765,62 +27765,90 @@ var _productDefault = parcelHelpers.interopDefault(_product);
 var _s = $RefreshSig$();
 const ProductList = ()=>{
     _s();
-    //     const productData = [
-    //         {
-    //             id:1,
-    //             name: 'iPhone',
-    //             description: "A description for iphone.",
-    //             category: 'mobile phones',
-    //         },
-    //         {
-    //             id:2,
-    //             name: 'Samsung',
-    //             description: "A description for Samsung.",
-    //             category: 'mobile phones',
-    //         },
-    //         {
-    //             id:3,
-    //             name: 'iPad',
-    //             description: "A description for ipad.",
-    //             category: 'tablets',
-    //         },
-    // ]
     const [products, setProducts] = (0, _react.useState)([]);
-    console.log(products);
+    const [categoryList, setCategoryList] = (0, _react.useState)([]);
+    const [filteredProducts, setFilteredProducts] = (0, _react.useState)([]);
     (0, _react.useEffect)(()=>{
-        // console.log('Use effect called!');
         fetchProducts();
+        fetchCategories();
     }, []);
+    (0, _react.useEffect)(()=>{
+        console.log("Use Effect called !");
+    }, [
+        products
+    ]);
+    const fetchCategories = async ()=>{
+        const categories = await fetch("https://dummyjson.com/products/category-list");
+        const categoriesJson = await categories.json();
+        setCategoryList(categoriesJson);
+        console.log(categoryList);
+    };
     const fetchProducts = async ()=>{
         const products = await fetch("https://dummyjson.com/products");
         const productsJson = await products.json();
         setProducts(productsJson.products);
-    // console.log(productsJson);
     };
-    // console.log("Component rendered !");
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        className: "container text-center product-wrapper",
-        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-            className: "row",
-            children: products.map((product)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _productDefault.default), {
-                    product: product
-                }, product.id, false, {
+    const handleClick = (e)=>{
+        const filteredProducts = products.filter((product)=>product.category === e.target.textContent);
+        setFilteredProducts(filteredProducts);
+    };
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "container text-center product-wrapper",
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    className: "row",
+                    children: categoryList.map((category, index)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                            onClick: (e)=>handleClick(e),
+                            type: "button",
+                            className: "btn btn-primary category",
+                            children: category
+                        }, index, false, {
+                            fileName: "components/ProductList.js",
+                            lineNumber: 42,
+                            columnNumber: 50
+                        }, undefined))
+                }, void 0, false, {
                     fileName: "components/ProductList.js",
-                    lineNumber: 49,
-                    columnNumber: 42
-                }, undefined))
-        }, void 0, false, {
-            fileName: "components/ProductList.js",
-            lineNumber: 48,
-            columnNumber: 9
-        }, undefined)
-    }, void 0, false, {
-        fileName: "components/ProductList.js",
-        lineNumber: 47,
-        columnNumber: 5
-    }, undefined);
+                    lineNumber: 41,
+                    columnNumber: 7
+                }, undefined)
+            }, void 0, false, {
+                fileName: "components/ProductList.js",
+                lineNumber: 40,
+                columnNumber: 5
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "container text-center product-wrapper",
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    className: "row",
+                    children: filteredProducts.length > 0 ? filteredProducts.map((product)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _productDefault.default), {
+                            product: product
+                        }, product.id, false, {
+                            fileName: "components/ProductList.js",
+                            lineNumber: 47,
+                            columnNumber: 76
+                        }, undefined)) : products.map((product)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _productDefault.default), {
+                            product: product
+                        }, product.id, false, {
+                            fileName: "components/ProductList.js",
+                            lineNumber: 48,
+                            columnNumber: 37
+                        }, undefined))
+                }, void 0, false, {
+                    fileName: "components/ProductList.js",
+                    lineNumber: 46,
+                    columnNumber: 7
+                }, undefined)
+            }, void 0, false, {
+                fileName: "components/ProductList.js",
+                lineNumber: 45,
+                columnNumber: 5
+            }, undefined)
+        ]
+    }, void 0, true);
 };
-_s(ProductList, "Of75wLl7oFZkZ1AGF2Dj3fIBhOY=");
+_s(ProductList, "x8lXjjMAnbRnYpAAuU4CJ8nMFKI=");
 _c = ProductList;
 exports.default = ProductList;
 var _c;

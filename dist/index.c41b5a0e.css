@@ -13342,4 +13342,9 @@ textarea.form-control-lg {
 .custom-badge {
   margin: 15px;
 }
+
+.category {
+  width: unset;
+  margin: 5px;
+}
 /*# sourceMappingURL=index.c41b5a0e.css.map */

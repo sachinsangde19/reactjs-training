@@ -4,51 +4,51 @@ import { useState } from 'react';
 
 const ProductList = () => {
 
-//     const productData = [
-//         {
-//             id:1,
-//             name: 'iPhone',
-//             description: "A description for iphone.",
-//             category: 'mobile phones',
-//         },
-//         {
-//             id:2,
-//             name: 'Samsung',
-//             description: "A description for Samsung.",
-//             category: 'mobile phones',
-//         },
-//         {
-//             id:3,
-//             name: 'iPad',
-//             description: "A description for ipad.",
-//             category: 'tablets',
-//         },
-// ]
-
 const [ products, setProducts ] = useState([]);
-console.log(products)
+const [ categoryList, setCategoryList ] = useState([]);
+const [ filteredProducts, setFilteredProducts ] = useState([]);
 
 useEffect( () => {
-    // console.log('Use effect called!');
     fetchProducts();
+    fetchCategories();
 },[] )
 
+useEffect( () => {
+  console.log('Use Effect called !');
+}, [ products ]);
+
+const fetchCategories = async() => {
+  const categories = await fetch("https://dummyjson.com/products/category-list");
+  const categoriesJson = await categories.json();
+  setCategoryList(categoriesJson);
+  console.log(categoryList);
+}
 
 const fetchProducts = async() => {
     const products = await fetch("https://dummyjson.com/products");
     const productsJson = await products.json();
     setProducts(productsJson.products);
-    // console.log(productsJson);
+  }
+
+const handleClick = (e) => {
+  const filteredProducts = products.filter( (product) => product.category === e.target.textContent );
+  setFilteredProducts(filteredProducts);
 }
 
-// console.log("Component rendered !");
-
   return (
+   <>
     <div className="container text-center product-wrapper">
-        <div className="row">
-            { products.map( (product) => <Product key={product.id} product={ product } /> ) }
-        </div>
+      <div className="row">
+        { categoryList.map( (category, index) => <button onClick={ (e) => handleClick(e) } key={ index } type="button" className="btn btn-primary category">{ category }</button> ) }
+      </div>
     </div>
+    <div className="container text-center product-wrapper">
+      <div className="row">
+        { filteredProducts.length > 0 ? filteredProducts.map( (product) => <Product key={product.id} product={ product } /> ) :
+         products.map( (product) => <Product key={product.id} product={ product } /> ) }
+      </div>
+    </div>
+    </>
   )
 }
 
